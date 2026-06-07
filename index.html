@@ -8,6 +8,7 @@
     <!-- ── STYLESHEETS (one per module) ──────────────────────────── -->
   <link rel="stylesheet" href="css/base.css" />          <!-- foundation        -->
   <link rel="stylesheet" href="css/loader-error.css" />  <!-- loading & errors  -->
+  <link rel="stylesheet" href="css/weather.css" />       <!-- weather section   -->
   
 </head>
 <body>
@@ -34,8 +35,48 @@
   └─────────────────────────────────────────────────────────┘
   -->
   <main class="dashboard">
+    <!-- ══════════════════════════════════════════════════════
+         MODULE 1 — WEATHER PANEL
+         Uses: Open-Meteo API (free, no key required)
+         User types a city name → JS fetches coordinates
+         from Nominatim → then fetches weather data
+    ═══════════════════════════════════════════════════════ -->
+    <section class="panel" id="weatherPanel" aria-label="Weather lookup">
+
+      <div class="panel-header">
+        <span class="panel-icon">🌤</span>
+        <div>
+          <h2 class="panel-title">Weather</h2>
+          <p class="panel-desc">Current conditions for any city.</p>
+        </div>
+      </div>
+
+      <!-- Search row: input + button -->
+      <div class="search-row">
+        <input
+          type="text"
+          id="cityInput"
+          class="search-input"
+          placeholder="Enter city name…"
+          autocomplete="off"
+        />
+        <button class="search-btn" id="weatherBtn">
+          Search
+        </button>
+      </div>
+
+      <!-- Result area: filled by render.js -->
+      <div class="panel-result" id="weatherResult">
+        <p class="hint-text">Search a city to see live weather.</p>
+      </div>
+    </section>
+
+
+    </main>
 
     
     <script src="js/render.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/events.js"></script>
 </body>
 </html>
