@@ -9,7 +9,8 @@
   <link rel="stylesheet" href="css/base.css" />          <!-- foundation        -->
   <link rel="stylesheet" href="css/loader-error.css" />  <!-- loading & errors  -->
   <link rel="stylesheet" href="css/weather.css" />       <!-- weather section   -->
-  
+   <link rel="stylesheet" href="css/quotes.css" />        <!-- quotes section    -->
+   
 </head>
 <body>
     
@@ -70,6 +71,33 @@
         <p class="hint-text">Search a city to see live weather.</p>
       </div>
     </section>
+   
+    <!-- ══════════════════════════════════════════════════════
+         MODULE 2 — QUOTE PANEL
+         Uses: Quotable API (free, no key required)
+         Each click fetches a new random inspiring quote
+    ═══════════════════════════════════════════════════════ -->
+    <section class="panel" id="quotePanel" aria-label="Random quote">
+
+      <div class="panel-header">
+        <span class="panel-icon">💬</span>
+        <div>
+          <h2 class="panel-title">Daily Wisdom</h2>
+          <p class="panel-desc">A random quote fetched live from the web.</p>
+        </div>
+      </div>
+
+      <!-- Result area: filled by render.js -->
+      <div class="panel-result" id="quoteResult">
+        <p class="hint-text">Press the button to get a quote.</p>
+      </div>
+
+      <button class="refresh-btn" id="quoteBtn">
+        ↻ New Quote
+      </button>
+
+    </section>
+
 
 
     </main>
