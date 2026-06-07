@@ -183,3 +183,34 @@ function decodeWeatherCode(code) {
   /* Return matching code or a fallback if code isn't in our map */
   return codes[code] || { label: 'Unknown Conditions', emoji: '🌡' };
 }
+
+/* ══════════════════════════════════════════════════════════════
+   QUOTES  –  Quotable API
+   ══════════════════════════════════════════════════════════════ */
+
+/**
+ * fetchQuote()
+ * ─────────────
+ * Fetches a single random quote from quotable.io.
+ * No API key required.
+ *
+ * Returns { text, author, tags }
+ */
+async function fetchQuote() {
+  const response = await fetch('https://api.quotable.io/quotes/random?limit=1');
+
+  if (!response.ok) throw new Error('Could not reach the quotes service.');
+
+  const data = await response.json();
+
+  /*
+   * The API returns an array even for a single quote.
+   * data[0] gets the first (and only) item.
+   */
+  const q = data[0];
+  return {
+    text:   q.content,
+    author: q.author,
+    tags:   q.tags || []
+  };
+}
