@@ -10,7 +10,8 @@
   <link rel="stylesheet" href="css/loader-error.css" />  <!-- loading & errors  -->
   <link rel="stylesheet" href="css/weather.css" />       <!-- weather section   -->
    <link rel="stylesheet" href="css/quotes.css" />        <!-- quotes section    -->
-   
+   <link rel="stylesheet" href="css/github.css" />        <!-- github section    -->
+
 </head>
 <body>
     
@@ -98,7 +99,41 @@
 
     </section>
 
+    <!-- ══════════════════════════════════════════════════════
+         MODULE 3 — GITHUB PANEL
+         Uses: GitHub public REST API (no key required)
+         User types a GitHub username → profile card appears
+    ═══════════════════════════════════════════════════════ -->
+    <section class="panel" id="githubPanel" aria-label="GitHub profile lookup">
 
+      <div class="panel-header">
+        <span class="panel-icon">🐙</span>
+        <div>
+          <h2 class="panel-title">GitHub Profile</h2>
+          <p class="panel-desc">Look up any public GitHub account.</p>
+        </div>
+      </div>
+
+      <!-- Search row: input + button -->
+      <div class="search-row">
+        <input
+          type="text"
+          id="githubInput"
+          class="search-input"
+          placeholder="GitHub username…"
+          autocomplete="off"
+        />
+        <button class="search-btn" id="githubBtn">
+          Search
+        </button>
+      </div>
+
+      <!-- Result area: filled by render.js -->
+      <div class="panel-result" id="githubResult">
+        <p class="hint-text">Search a username to see their profile.</p>
+      </div>
+
+    </section>
 
     </main>
 
