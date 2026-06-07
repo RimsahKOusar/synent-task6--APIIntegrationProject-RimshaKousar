@@ -1,0 +1,110 @@
+/*
+╔═══════════════════════════════════════════════════════════════╗
+║  weather.css  –  WEATHER PANEL STYLES                        ║
+║                                                               ║
+║  What this file does:                                         ║
+║  Styles the weather result card that appears after the user  ║
+║  searches for a city. The card shows:                         ║
+║    • City name + country                                      ║
+║    • Big temperature number                                   ║
+║    • Weather condition (e.g. "Partly Cloudy")                 ║
+║    • A row of stat chips (humidity, wind, feels like)         ║
+╚═══════════════════════════════════════════════════════════════╝
+*/
+
+
+/* ══════════════════════════════════════════════════════════════
+   WEATHER CARD  –  outer container
+   render.js creates a <div class="weather-card"> and fills it
+   ══════════════════════════════════════════════════════════════ */
+.weather-card {
+  background: linear-gradient(135deg, #1a1208 0%, #3d2b1a 100%);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  color: #f5f0e8;
+  animation: riseIn 0.35s ease both;
+}
+
+/* Reuse the global riseIn keyframe defined in base.css */
+
+
+/* ── LOCATION LINE ────────────────────────────────────────────
+   "Lahore, PK" shown above the big temperature number
+   ─────────────────────────────────────────────────────────── */
+.weather-location {
+  font-size: 0.85rem;
+  color: #9a8f80;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-sm);
+}
+
+
+/* ── MAIN TEMP ROW ────────────────────────────────────────────
+   Big temperature + weather emoji side by side
+   ─────────────────────────────────────────────────────────── */
+.weather-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-md);
+}
+
+/* The big temperature number */
+.weather-temp {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 900;
+  line-height: 1;
+  color: #f5f0e8;
+}
+
+/* Degree symbol in a smaller size */
+.weather-temp sup {
+  font-size: 1.5rem;
+  vertical-align: top;
+  margin-top: 8px;
+}
+
+/* Weather emoji / icon */
+.weather-emoji {
+  font-size: 3.5rem;
+  line-height: 1;
+}
+
+
+/* ── CONDITION TEXT ───────────────────────────────────────────
+   e.g. "Partly Cloudy"
+   ─────────────────────────────────────────────────────────── */
+.weather-condition {
+  font-size: 1rem;
+  color: #c8bfb0;
+  margin-bottom: var(--space-md);
+}
+
+
+/* ── STAT CHIPS ROW ───────────────────────────────────────────
+   Small pill-shaped chips: Humidity | Wind | Feels Like
+   flex-wrap: wrap means they move to next line on small screens
+   ─────────────────────────────────────────────────────────── */
+.weather-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.stat-chip {
+  background: rgba(255,255,255,0.1);   /* semi-transparent white   */
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xs) var(--space-md);
+  font-size: 0.82rem;
+  color: #c8bfb0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.stat-chip strong {
+  color: #f5f0e8;
+}
