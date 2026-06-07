@@ -105,3 +105,31 @@ weatherBtnEl.addEventListener('click', handleWeatherSearch);
 cityInputEl.addEventListener('keydown', function (e) {
   if (e.key === 'Enter') handleWeatherSearch();
 });
+
+/* ══════════════════════════════════════════════════════════════
+   QUOTE HANDLERS
+   ══════════════════════════════════════════════════════════════ */
+
+/**
+ * handleQuoteFetch()
+ * ───────────────────
+ * Called when user clicks "↻ New Quote".
+ * No input validation needed – fetchQuote() needs no parameters.
+ */
+async function handleQuoteFetch() {
+  showLoader(quoteResultEl);
+  quoteBtnEl.disabled = true;
+
+  try {
+    const quoteData = await fetchQuote();   /* from api.js */
+    showQuote(quoteResultEl, quoteData);    /* from render.js */
+
+  } catch (error) {
+    showError(quoteResultEl, error.message);
+
+  } finally {
+    quoteBtnEl.disabled = false;
+  }
+}
+
+quoteBtnEl.addEventListener('click', handleQuoteFetch);
