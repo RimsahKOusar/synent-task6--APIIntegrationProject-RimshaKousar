@@ -1,0 +1,165 @@
+/*
+╔═══════════════════════════════════════════════════════════════╗
+║  github.css  –  GITHUB PROFILE CARD STYLES                   ║
+║                                                               ║
+║  What this file does:                                         ║
+║  Styles the GitHub profile card that render.js builds after  ║
+║  a successful API call. The card shows:                       ║
+║    • Avatar (circular profile photo)                          ║
+║    • Name, username, bio                                      ║
+║    • Stat row: repos | followers | following                  ║
+║    • A "View on GitHub" link button                           ║
+╚═══════════════════════════════════════════════════════════════╝
+*/
+
+
+/* ══════════════════════════════════════════════════════════════
+   GITHUB CARD  –  outer wrapper
+   ══════════════════════════════════════════════════════════════ */
+.github-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  animation: riseIn 0.35s ease both;
+}
+
+
+/* ── TOP ROW: avatar + name + bio ─────────────────────────────
+   Uses flexbox to place avatar on the left, text on the right.
+   ─────────────────────────────────────────────────────────── */
+.github-top {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+/* Circular avatar image */
+.github-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;           /* circle crop                   */
+  border: 3px solid var(--border);
+  object-fit: cover;            /* never squish/stretch photo    */
+  flex-shrink: 0;
+}
+
+/* Text block next to avatar */
+.github-info {
+  flex: 1;
+  min-width: 0;                 /* prevents overflow in flexbox  */
+}
+
+.github-name {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  line-height: 1.2;
+}
+
+/* @username shown below name */
+.github-login {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* Bio paragraph */
+/* NEW — modern, no warning */
+.github-bio {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-clamp: 3;          /* standard (newer browsers) */
+  -webkit-line-clamp: 3;  /* keep for broader support  */
+}
+
+
+/* ── STATS ROW: repos | followers | following ─────────────────
+   Three stat boxes in a row with a thin border between them.
+   ─────────────────────────────────────────────────────────── */
+.github-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);   /* 3 equal columns */
+  gap: 1px;                                /* gap acts as divider */
+  background: var(--border);              /* the 1px lines are actually
+                                             the background showing through */
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;                        /* clips child corners */
+}
+
+.stat-box {
+  background: var(--bg-panel);
+  text-align: center;
+  padding: var(--space-sm) var(--space-xs);
+}
+
+/* The big number */
+.stat-value {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  line-height: 1.2;
+  display: block;
+}
+
+/* Label below the number */
+.stat-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+
+/* ── LOCATION + BLOG ROW ──────────────────────────────────────
+   Small meta info line (location, website) if user has them.
+   ─────────────────────────────────────────────────────────── */
+.github-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-md);
+  font-size: 0.83rem;
+  color: var(--text-muted);
+}
+
+.github-meta span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.github-meta a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.github-meta a:hover {
+  text-decoration: underline;
+}
+
+
+/* ── VIEW PROFILE BUTTON ──────────────────────────────────────
+   Outlined link button that opens GitHub in a new tab.
+   ─────────────────────────────────────────────────────────── */
+.github-link-btn {
+  display: inline-block;
+  padding: var(--space-sm) var(--space-lg);
+  border: 2px solid var(--text-heading);
+  border-radius: var(--radius-sm);
+  color: var(--text-heading);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-decoration: none;
+  text-align: center;
+  transition: background 0.15s, color 0.15s;
+  align-self: flex-start;
+}
+
+.github-link-btn:hover {
+  background: var(--text-heading);
+  color: #f5f0e8;
+}
