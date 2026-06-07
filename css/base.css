@@ -1,0 +1,89 @@
+/*
+╔═══════════════════════════════════════════════════════════════╗
+║  base.css  –  FOUNDATION STYLES                              ║
+║                                                               ║
+║  What this file does:                                         ║
+║  1. Defines ALL colour/spacing/font variables (one place      ║
+║     to change the whole look of the site)                     ║
+║  2. Resets browser default styles                             ║
+║  3. Styles the <body>, page header, main layout, footer,      ║
+║     and the shared "panel" card that all 3 sections use       ║
+╚═══════════════════════════════════════════════════════════════╝
+*/
+
+
+/* ══════════════════════════════════════════════════════════════
+   1. CSS CUSTOM PROPERTIES  (variables)
+   Think of these as named constants – define once, use everywhere.
+   Changing --accent here updates EVERY button/highlight instantly.
+   ══════════════════════════════════════════════════════════════ */
+:root {
+  /* Colour palette – warm editorial / magazine feel */
+  --bg-page:      #f5f0e8;    /* warm cream page background          */
+  --bg-panel:     #ffffff;    /* bright white card surface           */
+  --bg-panel-alt: #fdf8f0;    /* very slightly warm panel variant    */
+  --border:       #e2d9c8;    /* soft warm border                    */
+  --accent:       #c0392b;    /* deep editorial red – primary accent */
+  --accent-light: #f9eceb;    /* pale red for hover backgrounds      */
+  --text-heading: #1a1208;    /* near-black ink for headings         */
+  --text-body:    #3d3328;    /* dark warm brown for body text       */
+  --text-muted:   #9a8f80;    /* grey-brown for secondary text       */
+  --text-hint:    #b8aa97;    /* even lighter for placeholder hints  */
+
+  /* Typography */
+  --font-display: 'Playfair Display', Georgia, serif;  /* headings  */
+  --font-body:    'Nunito', sans-serif;                /* everything */
+
+  /* Spacing scale – consistent rhythm throughout */
+  --space-xs:   4px;
+  --space-sm:   8px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  40px;
+  --space-2xl: 64px;
+
+  /* Border radius */
+  --radius-sm:  6px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+
+  /* Shadow */
+  --shadow-card: 0 2px 16px rgba(60,40,10,0.08);
+  --shadow-hover: 0 6px 28px rgba(60,40,10,0.13);
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   2. BOX-MODEL RESET
+   Makes width calculations predictable:
+   width = content + padding (border NOT added outside)
+   ══════════════════════════════════════════════════════════════ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   3. BASE PAGE
+   Sets the warm cream background, comfortable font, and
+   a subtle grid texture using CSS repeating-linear-gradient.
+   ══════════════════════════════════════════════════════════════ */
+body {
+  background-color: var(--bg-page);
+  /* Faint ruled-line texture – gives a notebook/editorial feel */
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 31px,
+    #e8dfd0 31px,
+    #e8dfd0 32px
+  );
+  color: var(--text-body);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  min-height: 100vh;
+}
