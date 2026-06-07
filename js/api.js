@@ -214,3 +214,47 @@ async function fetchQuote() {
     tags:   q.tags || []
   };
 }
+/* ══════════════════════════════════════════════════════════════
+   GITHUB  –  GitHub REST API
+   ══════════════════════════════════════════════════════════════ */
+
+/**
+ * fetchGitHubUser(username)
+ * ─────────────────────────
+ * Fetches a public GitHub user's profile.
+ * No API key needed for public data (rate limit: 60 req/hr).
+ *
+ * @param  {string} username  e.g. "torvalds" or "sindresorhus"
+ * @returns {Object}  profile data
+ */
+async function fetchGitHubUser(username) {
+  const response = await fetch(`https://api.github.com/users/${encodeURIComponent(username)}`);
+
+  /*
+   * GitHub returns 404 for unknown users.
+   * We handle this specifically to show a friendly message.
+   */
+  if (response.status === 404) {
+    throw new Error(`GitHub user "${username}" not found.`);
+  }
+
+  if (!response.ok) {
+    throw new Error('GitHub API unavailable. Try again shortly.');
+  }
+
+  const d = await response.json();
+
+  /* Return only the fields we display (ignore the ~30 others) */
+  return {
+    name:       d.name || d.login,
+    login:      d.login,
+    avatarUrl:  d.avatar_url,
+    bio:        d.bio,
+    location:   d.location,
+    blog:       d.blog,
+    publicRepos: d.public_repos,
+    followers:  d.followers,
+    following:  d.following,
+    profileUrl: d.html_url
+  };
+}
