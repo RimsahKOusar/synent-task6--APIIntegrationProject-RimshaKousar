@@ -133,3 +133,42 @@ async function handleQuoteFetch() {
 }
 
 quoteBtnEl.addEventListener('click', handleQuoteFetch);
+
+/* ══════════════════════════════════════════════════════════════
+   GITHUB HANDLERS
+   ══════════════════════════════════════════════════════════════ */
+
+/**
+ * handleGitHubSearch()
+ * ─────────────────────
+ * Called when user clicks "Search" in the GitHub panel.
+ */
+async function handleGitHubSearch() {
+  const username = githubInputEl.value.trim();
+
+  if (!username) {
+    showError(githubResultEl, 'Please enter a GitHub username.');
+    return;
+  }
+
+  showLoader(githubResultEl);
+  githubBtnEl.disabled = true;
+
+  try {
+    const userData = await fetchGitHubUser(username);   /* from api.js */
+    showGitHub(githubResultEl, userData);               /* from render.js */
+
+  } catch (error) {
+    showError(githubResultEl, error.message);
+
+  } finally {
+    githubBtnEl.disabled = false;
+  }
+}
+
+githubBtnEl.addEventListener('click', handleGitHubSearch);
+
+/* Enter key in the GitHub input → search */
+githubInputEl.addEventListener('keydown', function (e) {
+  if (e.key === 'Enter') handleGitHubSearch();
+});
