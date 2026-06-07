@@ -140,3 +140,137 @@ body {
   color: #9a8f80;
   letter-spacing: 0.03em;
 }
+
+/* ══════════════════════════════════════════════════════════════
+   5. MAIN DASHBOARD LAYOUT
+   Three panels stacked vertically, centred on page.
+   ══════════════════════════════════════════════════════════════ */
+.dashboard {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   6. SHARED PANEL CARD
+   All three sections (weather / quote / github) use this
+   base card style. Module-specific styles add on top.
+   ══════════════════════════════════════════════════════════════ */
+.panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-card);
+  /* Cards slide up as page loads */
+  animation: riseIn 0.4s ease both;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+/* Stagger each panel's entrance by index */
+.panel:nth-child(1) { animation-delay: 0.0s; }
+.panel:nth-child(2) { animation-delay: 0.1s; }
+.panel:nth-child(3) { animation-delay: 0.2s; }
+
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ── PANEL HEADER ROW (icon + title + description) ───────────── */
+.panel-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--border);
+}
+
+.panel-icon {
+  font-size: 1.8rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.panel-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  line-height: 1.2;
+}
+
+.panel-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+
+/* ── SHARED SEARCH ROW (input + button) ─────────────────────── */
+.search-row {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.search-input {
+  flex: 1;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-md);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-body);
+  background: var(--bg-page);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.search-input:focus {
+  border-color: var(--accent);
+}
+
+.search-input::placeholder {
+  color: var(--text-hint);
+}
+
+/* Primary search / action button */
+.search-btn,
+.refresh-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-lg);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  white-space: nowrap;
+}
+
+.search-btn:hover,
+.refresh-btn:hover  { background: #a93226; }
+.search-btn:active,
+.refresh-btn:active { transform: scale(0.96); }
+
+
+/* ── RESULT AREA ─────────────────────────────────────────────── */
+.panel-result {
+  min-height: 60px;   /* prevents panel jumping when content loads */
+}
+
+/* Hint text shown before user searches */
+.hint-text {
+  color: var(--text-hint);
+  font-size: 0.9rem;
+  font-style: italic;
+}
