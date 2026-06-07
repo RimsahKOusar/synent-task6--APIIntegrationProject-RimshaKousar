@@ -274,3 +274,34 @@ body {
   font-size: 0.9rem;
   font-style: italic;
 }
+
+/* ══════════════════════════════════════════════════════════════
+   7. SITE FOOTER
+   ══════════════════════════════════════════════════════════════ */
+.site-footer {
+  text-align: center;
+  padding: var(--space-xl) var(--space-md);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+.docs-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.docs-link:hover {
+  text-decoration: underline;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   8. UTILITY
+   ══════════════════════════════════════════════════════════════ */
+.hidden { display: none !important; }
