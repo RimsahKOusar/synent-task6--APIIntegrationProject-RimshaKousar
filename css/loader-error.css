@@ -1,0 +1,133 @@
+/*
+╔═══════════════════════════════════════════════════════════════╗
+║  loader-error.css  –  LOADING & ERROR STATE STYLES           ║
+║                                                               ║
+║  What this file does:                                         ║
+║  Provides TWO reusable visual states that appear inside       ║
+║  ANY of the three panels:                                     ║
+║                                                               ║
+║  1. LOADING STATE – animated skeleton/spinner shown while     ║
+║     the Fetch API call is in progress (network takes time!)   ║
+║                                                               ║
+║  2. ERROR STATE – friendly red card shown if the API call     ║
+║     fails (bad network, wrong city, user not found, etc.)     ║
+║                                                               ║
+║  These classes are SHARED across all panels – defined once    ║
+║  here, reused everywhere. That's the DRY principle:           ║
+║  "Don't Repeat Yourself."                                     ║
+╚═══════════════════════════════════════════════════════════════╝
+*/
+
+
+/* ══════════════════════════════════════════════════════════════
+   LOADING SPINNER
+   A rotating circle drawn entirely with CSS (no image needed).
+   render.js injects <div class="loader"> into the result area.
+   ══════════════════════════════════════════════════════════════ */
+.loader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* The spinning circle itself */
+.loader-ring {
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--border);        /* light grey full circle  */
+  border-top-color: var(--accent);         /* one red arc that spins  */
+  border-radius: 50%;                      /* makes it a circle       */
+  animation: spin 0.8s linear infinite;   /* continuous rotation     */
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   SKELETON LOADER (pulse animation)
+   Gray placeholder bars that mimic the shape of the content
+   before it loads. Common in apps like LinkedIn / Facebook.
+   ══════════════════════════════════════════════════════════════ */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--border) 25%,
+    var(--bg-panel-alt) 50%,
+    var(--border) 75%
+  );
+  /* background-size larger than element so we can animate it */
+  background-size: 200% 100%;
+  border-radius: var(--radius-sm);
+  animation: shimmer 1.4s ease infinite;
+}
+
+@keyframes shimmer {
+  /* The shimmer moves from left to right */
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
+
+/* Skeleton bar sizes – mix these for realistic layouts */
+.skeleton-line {
+  height: 14px;
+  margin-bottom: var(--space-sm);
+}
+
+.skeleton-line.wide  { width: 80%; }
+.skeleton-line.mid   { width: 55%; }
+.skeleton-line.short { width: 35%; }
+
+.skeleton-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   ERROR CARD
+   Shown when the API returns an error or the network fails.
+   render.js calls showError() which injects this markup.
+   ══════════════════════════════════════════════════════════════ */
+.error-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  background: #fdf0ef;
+  border: 1px solid #f5c0bc;
+  border-radius: var(--radius-sm);
+  padding: var(--space-md);
+  /* Shake animation to draw attention to the error */
+  animation: shake 0.35s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25%       { transform: translateX(-7px); }
+  75%       { transform: translateX(7px); }
+}
+
+.error-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.error-title {
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 0.9rem;
+  margin-bottom: 2px;
+}
+
+.error-msg {
+  font-size: 0.85rem;
+  color: var(--text-body);
+}
