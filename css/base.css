@@ -87,3 +87,56 @@ body {
   line-height: 1.7;
   min-height: 100vh;
 }
+
+/* ══════════════════════════════════════════════════════════════
+   4. SITE HEADER
+   Large editorial-style title block at the top of the page.
+   ══════════════════════════════════════════════════════════════ */
+.site-header {
+  background: var(--text-heading);   /* deep ink background         */
+  color: #f5f0e8;                    /* cream text on dark bg       */
+  padding: var(--space-xl) var(--space-md);
+  text-align: center;
+}
+
+.header-inner {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Brand row: red dot + "Pulse" text */
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+/* Animated red pulse dot – the logo */
+.brand-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1);   opacity: 1; }
+  50%       { transform: scale(1.3); opacity: 0.7; }
+}
+
+.brand-name {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: #f5f0e8;
+}
+
+.brand-tagline {
+  font-size: 0.95rem;
+  color: #9a8f80;
+  letter-spacing: 0.03em;
+}
