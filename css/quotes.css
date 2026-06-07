@@ -1,0 +1,106 @@
+/*
+╔═══════════════════════════════════════════════════════════════╗
+║  quotes.css  –  QUOTE PANEL STYLES                           ║
+║                                                               ║
+║  What this file does:                                         ║
+║  Styles the quote card that appears when the user clicks     ║
+║  "New Quote". The card shows:                                 ║
+║    • A large decorative opening quote mark (")               ║
+║    • The quote text                                           ║
+║    • The author's name with a decorative dash                 ║
+╚═══════════════════════════════════════════════════════════════╝
+*/
+
+
+/* ══════════════════════════════════════════════════════════════
+   QUOTE CARD  –  outer wrapper
+   Uses the warm cream alt background (slightly different
+   from the pure white panel, for visual variety).
+   ══════════════════════════════════════════════════════════════ */
+.quote-card {
+  background: var(--bg-panel-alt);
+  border-left: 4px solid var(--accent);   /* red left border accent  */
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: var(--space-lg);
+  position: relative;
+  animation: riseIn 0.35s ease both;
+}
+
+
+/* ── BIG DECORATIVE QUOTE MARK ────────────────────────────────
+   A giant " character placed in the top-left corner.
+   It's purely decorative – doesn't affect layout.
+   position: absolute takes it "out of flow" so it overlaps.
+   ─────────────────────────────────────────────────────────── */
+.quote-card::before {
+  content: '\201C';            /* Unicode left double-quote: "  */
+  font-family: var(--font-display);
+  font-size: 6rem;
+  color: var(--accent);
+  opacity: 0.12;               /* very faint – background texture */
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  line-height: 1;
+  pointer-events: none;        /* can't accidentally click it    */
+}
+
+
+/* ── QUOTE TEXT ───────────────────────────────────────────────
+   The actual quote content. Uses display font for elegance.
+   padding-top pushes it past the decorative quote mark.
+   ─────────────────────────────────────────────────────────── */
+.quote-text {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--text-heading);
+  font-style: italic;
+  margin-bottom: var(--space-md);
+  padding-top: var(--space-sm);
+  position: relative;          /* sits above the ::before mark  */
+  z-index: 1;
+}
+
+
+/* ── AUTHOR LINE ──────────────────────────────────────────────
+   "— Marcus Aurelius" or whoever the author is.
+   The em-dash (—) is added by render.js in the text.
+   ─────────────────────────────────────────────────────────── */
+.quote-author {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+
+/* ── QUOTE TAG CHIPS ──────────────────────────────────────────
+   Small category tags returned by the API (e.g. "wisdom")
+   Shown in a row below the author line.
+   ─────────────────────────────────────────────────────────── */
+.quote-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-top: var(--space-sm);
+}
+
+.quote-tag {
+  background: var(--accent-light);
+  color: var(--accent);
+  border-radius: var(--radius-lg);
+  padding: 2px var(--space-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+
+/* ── REFRESH BUTTON ALIGNMENT ─────────────────────────────────
+   The "↻ New Quote" button – aligns to the right.
+   Base button styles are in base.css (.refresh-btn).
+   ─────────────────────────────────────────────────────────── */
+#quotePanel .refresh-btn {
+  align-self: flex-end;   /* push button to right in flex column */
+}
